@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "x_spaces",
+  "info": {
+    "singularName": "x-space",
+    "pluralName": "x-spaces",
+    "displayName": "X Space",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "SpaceID": {
+      "type": "string"
+    },
+    "Host": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "Participant": {
+      "type": "component",
+      "repeatable": true,
+      "component": "xdata.participants"
+    },
+    "Recording": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "date": {
+      "type": "date"
+    },
+    "Duration": {
+      "type": "string"
+    },
+    "isLive": {
+      "type": "boolean"
+    },
+    "tweetURL": {
+      "type": "uid",
+      "targetField": "SpaceID"
+    }
+  }
+}

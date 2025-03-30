@@ -369,6 +369,190 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiRedditReddit extends Struct.CollectionTypeSchema {
+  collectionName: 'reddits';
+  info: {
+    displayName: 'Reddit';
+    pluralName: 'reddits';
+    singularName: 'reddit';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    author: Schema.Attribute.String;
+    commentsCount: Schema.Attribute.Integer;
+    content: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    datePosted: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::reddit.reddit'
+    > &
+      Schema.Attribute.Private;
+    media: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    postId: Schema.Attribute.String;
+    postUrl: Schema.Attribute.UID<'postId'>;
+    publishedAt: Schema.Attribute.DateTime;
+    subreddit: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    upvotes: Schema.Attribute.Integer;
+  };
+}
+
+export interface ApiTikTokTikTok extends Struct.CollectionTypeSchema {
+  collectionName: 'tik_toks';
+  info: {
+    displayName: 'TikTok';
+    pluralName: 'tik-toks';
+    singularName: 'tik-tok';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Comments: Schema.Attribute.Integer;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    DatePosted: Schema.Attribute.Date;
+    Description: Schema.Attribute.Blocks;
+    Likes: Schema.Attribute.Integer;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::tik-tok.tik-tok'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Shares: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Username: Schema.Attribute.String;
+    video: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    videoId: Schema.Attribute.String;
+    VideoURL: Schema.Attribute.String;
+  };
+}
+
+export interface ApiXSpaceXSpace extends Struct.CollectionTypeSchema {
+  collectionName: 'x_spaces';
+  info: {
+    description: '';
+    displayName: 'X Space';
+    pluralName: 'x-spaces';
+    singularName: 'x-space';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    Duration: Schema.Attribute.String;
+    Host: Schema.Attribute.String;
+    isLive: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::x-space.x-space'
+    > &
+      Schema.Attribute.Private;
+    Participant: Schema.Attribute.Component<'xdata.participants', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    Recording: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    SpaceID: Schema.Attribute.String;
+    topic: Schema.Attribute.String;
+    tweetURL: Schema.Attribute.UID<'SpaceID'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiXX extends Struct.CollectionTypeSchema {
+  collectionName: 'xes';
+  info: {
+    description: '';
+    displayName: 'X';
+    pluralName: 'xes';
+    singularName: 'x';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Avatar: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    DatePosted: Schema.Attribute.Date;
+    DisplayName: Schema.Attribute.String;
+    Hashtag: Schema.Attribute.Component<'xdata.hashtag', true>;
+    Likes: Schema.Attribute.Integer;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::x.x'> &
+      Schema.Attribute.Private;
+    Mentions: Schema.Attribute.Component<'xdata.mentions', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    Retweets: Schema.Attribute.Integer;
+    TweetText: Schema.Attribute.Blocks;
+    TweetURL: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Username: Schema.Attribute.String;
+  };
+}
+
+export interface ApiYoutubeYoutube extends Struct.CollectionTypeSchema {
+  collectionName: 'youtubes';
+  info: {
+    displayName: 'Youtube';
+    pluralName: 'youtubes';
+    singularName: 'youtube';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    ChannelName: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    DatePosted: Schema.Attribute.Date;
+    Description: Schema.Attribute.Blocks;
+    Likes: Schema.Attribute.Integer;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::youtube.youtube'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Thumbnail: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    Title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    VideoID: Schema.Attribute.String;
+    VideoURL: Schema.Attribute.UID<'VideoID'>;
+    Views: Schema.Attribute.Integer;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -878,6 +1062,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::reddit.reddit': ApiRedditReddit;
+      'api::tik-tok.tik-tok': ApiTikTokTikTok;
+      'api::x-space.x-space': ApiXSpaceXSpace;
+      'api::x.x': ApiXX;
+      'api::youtube.youtube': ApiYoutubeYoutube;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

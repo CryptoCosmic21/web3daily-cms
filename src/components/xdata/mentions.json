@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_xdata_mentions",
+  "info": {
+    "displayName": "Mentions",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "handle": {
+      "type": "string"
+    }
+  }
+}

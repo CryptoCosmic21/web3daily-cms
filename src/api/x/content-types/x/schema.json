@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "xes",
+  "info": {
+    "singularName": "x",
+    "pluralName": "xes",
+    "displayName": "X",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Username": {
+      "type": "string"
+    },
+    "DisplayName": {
+      "type": "string"
+    },
+    "Avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "TweetText": {
+      "type": "blocks"
+    },
+    "DatePosted": {
+      "type": "date"
+    },
+    "Likes": {
+      "type": "integer"
+    },
+    "Retweets": {
+      "type": "integer"
+    },
+    "Hashtag": {
+      "type": "component",
+      "repeatable": true,
+      "component": "xdata.hashtag"
+    },
+    "TweetURL": {
+      "type": "string"
+    },
+    "Mentions": {
+      "displayName": "Mentions",
+      "type": "component",
+      "repeatable": true,
+      "component": "xdata.mentions"
+    }
+  }
+}

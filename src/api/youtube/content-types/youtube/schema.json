@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "youtubes",
+  "info": {
+    "singularName": "youtube",
+    "pluralName": "youtubes",
+    "displayName": "Youtube"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "VideoID": {
+      "type": "string"
+    },
+    "Title": {
+      "type": "string"
+    },
+    "ChannelName": {
+      "type": "string"
+    },
+    "Thumbnail": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "Description": {
+      "type": "blocks"
+    },
+    "DatePosted": {
+      "type": "date"
+    },
+    "Views": {
+      "type": "integer"
+    },
+    "Likes": {
+      "type": "integer"
+    },
+    "VideoURL": {
+      "type": "uid",
+      "targetField": "VideoID"
+    }
+  }
+}

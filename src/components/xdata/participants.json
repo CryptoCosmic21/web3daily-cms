@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_xdata_participants",
+  "info": {
+    "displayName": "Participants"
+  },
+  "options": {},
+  "attributes": {
+    "Participant": {
+      "type": "string"
+    }
+  }
+}

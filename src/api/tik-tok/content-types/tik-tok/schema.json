@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tik_toks",
+  "info": {
+    "singularName": "tik-tok",
+    "pluralName": "tik-toks",
+    "displayName": "TikTok"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "videoId": {
+      "type": "string"
+    },
+    "Username": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "blocks"
+    },
+    "video": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "DatePosted": {
+      "type": "date"
+    },
+    "Likes": {
+      "type": "integer"
+    },
+    "Comments": {
+      "type": "integer"
+    },
+    "Shares": {
+      "type": "integer"
+    },
+    "VideoURL": {
+      "type": "string"
+    }
+  }
+}

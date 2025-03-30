@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reddits",
+  "info": {
+    "singularName": "reddit",
+    "pluralName": "reddits",
+    "displayName": "Reddit"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "postId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "subreddit": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "content": {
+      "type": "blocks"
+    },
+    "media": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "upvotes": {
+      "type": "integer"
+    },
+    "commentsCount": {
+      "type": "integer"
+    },
+    "datePosted": {
+      "type": "date"
+    },
+    "postUrl": {
+      "type": "uid",
+      "targetField": "postId"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_xdata_hashtags",
+  "info": {
+    "displayName": "Hashtag"
+  },
+  "options": {},
+  "attributes": {
+    "hashtag": {
+      "type": "string"
+    }
+  }
+}
