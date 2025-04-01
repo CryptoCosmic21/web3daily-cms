@@ -2,7 +2,7 @@
  * updateXFeed.js
  *
  * This script fetches RSS feeds from Nitter for the specified users and
- * posts the parsed data to Strapi at:
+ * posts the mapped data to Strapi at:
  *   https://web3daily-cms.onrender.com/api/xes
  *
  * Make sure you have installed axios and rss-parser:
@@ -20,15 +20,23 @@ const NITTER_RSS_FEEDS = [
 ];
 
 /**
- * Map an RSS feed item to the payload expected by your Strapi X collection.
- * Adjust the mapping if your content type requires different fields.
+ * Map an RSS feed item to the payload expected by your Strapi "X" collection.
+ * 
+ * Note: For Strapi repeatable components (Hashtag and Mentions), we send an array
+ * of objects. Here they are empty but can be filled after parsing tweet text.
  */
-async function mapRssItemToStrapiFields(item) {
+function mapRssItemToStrapiFields(item) {
   return {
+    Username: item.creator || 'Unknown',
     DisplayName: item.title || 'No display name',
+    Avatar: '', // No avatar data from RSS; later you might upload a default image.
     TweetText: item.contentSnippet || 'No tweet content',
+    DatePosted: item.isoDate || new Date().toISOString(),
+    Likes: 0,
+    Retweets: 0,
+    Hashtag: [], // Expecting an array of objects, e.g. [{ hashtag: "#example" }]
     TweetURL: item.link || '',
-    DatePosted: item.isoDate || new Date().toISOString()
+    Mentions: [] // Expecting an array of objects, e.g. [{ handle: "@example" }]
   };
 }
 
@@ -54,11 +62,12 @@ async function fetchTweets() {
  */
 async function postTweetToStrapi(tweetData) {
   try {
-    // Strapi v4 expects the data in a "data" property.
-    const res = await axios.post('https://web3daily-cms.onrender.com/api/xes', { data: tweetData });
+    const res = await axios.post('https://web3daily-cms.onrender.com/api/xes', {
+      data: tweetData
+    });
     console.log(`Posted tweet: ${tweetData.TweetURL} with ID: ${res.data.data?.id}`);
   } catch (err) {
-    console.error(`Error posting tweet ${tweetData.TweetURL}:`, err.message);
+    console.error(`Error posting tweet ${tweetData.TweetURL}:`, err.response ? err.response.data : err.message);
   }
 }
 
@@ -69,7 +78,7 @@ async function updateXFeed() {
   const tweets = await fetchTweets();
   console.log(`Fetched ${tweets.length} tweets.`);
   for (const tweet of tweets) {
-    const mappedData = await mapRssItemToStrapiFields(tweet);
+    const mappedData = mapRssItemToStrapiFields(tweet);
     console.log('Mapped tweet data:', mappedData);
     await postTweetToStrapi(mappedData);
   }
