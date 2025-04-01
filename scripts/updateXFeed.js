@@ -21,10 +21,10 @@ const NITTER_RSS_FEEDS = [
 
 /**
  * Map an RSS feed item to the payload expected by your Strapi "X" collection.
- * Make sure these keys match exactly what you configured in Strapi.
+ * Field names must exactly match your Strapi content type.
  */
 async function mapRssItemToStrapiFields(item) {
-  return {
+  const mapped = {
     Username: item.creator || 'Unknown',
     DisplayName: item.title || 'No display name',
     Avatar: '', // No avatar data provided by RSS
@@ -32,12 +32,13 @@ async function mapRssItemToStrapiFields(item) {
     DatePosted: item.isoDate || new Date().toISOString(),
     Likes: 0,
     Retweets: 0,
-    Hashtag: [],   // Modify if you want to parse hashtags
     TweetURL: item.link || '',
-    Mentions: [],
-    // Adding publishedAt ensures the entry is published (not just saved as draft)
     publishedAt: new Date().toISOString()
   };
+
+  // Omit relational fields if there's no data:
+  // If you need to include them, ensure they match the component structure defined in Strapi.
+  return mapped;
 }
 
 /**
@@ -62,13 +63,11 @@ async function fetchTweets() {
  */
 async function postTweetToStrapi(tweetData) {
   try {
-    // Strapi v4 expects the payload wrapped in a "data" object.
     const res = await axios.post('https://web3daily-cms.onrender.com/api/xes', {
       data: tweetData
     });
     console.log(`Posted tweet: ${tweetData.TweetURL} with ID: ${res.data.data?.id}`);
   } catch (err) {
-    // Log the error response details for debugging.
     console.error(
       `Error posting tweet ${tweetData.TweetURL}:`,
       err.response ? err.response.data : err.message
