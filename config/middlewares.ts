@@ -2,7 +2,12 @@ export default [
   'strapi::logger',
   'strapi::errors',
   'strapi::security',
-  'strapi::cors',
+  {
+    name: 'strapi::cors',
+    config: {
+      origin: ['https://web3daily.vercel.app', 'http://localhost:5137']
+    }
+  },
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
